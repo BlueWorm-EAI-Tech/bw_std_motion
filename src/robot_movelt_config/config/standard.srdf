@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="standard">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="arm_l">
+        <chain base_link="C_Link" tip_link="A_left_Degree7_link"/>
+    </group>
+    <group name="hand_l">
+        <joint name="A_left_Degree8_joint"/>
+        <joint name="A_left_Degree9_joint"/>
+    </group>
+    <group name="arm_r">
+        <chain base_link="C_Link" tip_link="A_right_Degree7_link"/>
+    </group>
+    <group name="hand_r">
+        <joint name="A_right_Degree8_joint"/>
+        <joint name="A_right_Degree9_joint"/>
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="pose_l" group="arm_l">
+        <joint name="A_left_Degree1_joint" value="0"/>
+        <joint name="A_left_Degree2_joint" value="0"/>
+        <joint name="A_left_Degree3_joint" value="0"/>
+        <joint name="A_left_Degree4_joint" value="0"/>
+        <joint name="A_left_Degree5_joint" value="0"/>
+        <joint name="A_left_Degree6_joint" value="0"/>
+        <joint name="A_left_Degree7_joint" value="0"/>
+    </group_state>
+    <group_state name="pose_r" group="arm_r">
+        <joint name="A_right_Degree1_joint" value="0"/>
+        <joint name="A_right_Degree2_joint" value="0"/>
+        <joint name="A_right_Degree3_joint" value="0"/>
+        <joint name="A_right_Degree4_joint" value="0"/>
+        <joint name="A_right_Degree5_joint" value="0"/>
+        <joint name="A_right_Degree6_joint" value="0"/>
+        <joint name="A_right_Degree7_joint" value="0"/>
+    </group_state>
+    <group_state name="close_l" group="hand_l">
+        <joint name="A_left_Degree8_joint" value="0.0496"/>
+        <joint name="A_left_Degree9_joint" value="0.0496"/>
+    </group_state>
+    <group_state name="close_r" group="hand_r">
+        <joint name="A_right_Degree8_joint" value="0.0496"/>
+        <joint name="A_right_Degree9_joint" value="0.0496"/>
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="hand_l" parent_link="A_left_Degree7_link" group="hand_l" parent_group="arm_l"/>
+    <end_effector name="hand_r" parent_link="A_right_Degree7_link" group="hand_r" parent_group="arm_r"/>
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_footprint"/>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="A_left_Degree1_link" link2="A_left_Degree2_link" reason="Adjacent"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_left_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_left_Degree4_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_left_Degree5_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_left_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_left_Degree7_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_left_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_left_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_right_Degree1_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_right_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_right_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_right_Degree4_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_right_Degree5_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="A_right_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="C_Link" reason="Adjacent"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="H_Degree1_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="H_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree1_link" link2="base_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_left_Degree3_link" reason="Adjacent"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_left_Degree4_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_left_Degree5_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_left_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_left_Degree7_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_left_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_left_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_right_Degree1_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_right_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_right_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_right_Degree4_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_right_Degree5_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="A_right_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="C_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="H_Degree1_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="H_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree2_link" link2="base_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_left_Degree4_link" reason="Adjacent"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_left_Degree5_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_left_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_left_Degree7_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_left_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_left_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_right_Degree1_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_right_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_right_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_right_Degree4_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_right_Degree5_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="A_right_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="C_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="H_Degree1_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="H_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree3_link" link2="base_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="A_left_Degree5_link" reason="Adjacent"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="A_left_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="A_left_Degree7_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="A_left_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="A_left_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="A_right_Degree1_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="A_right_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="A_right_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="A_right_Degree4_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="A_right_Degree5_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="A_right_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="H_Degree1_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree4_link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree5_link" link2="A_left_Degree6_link" reason="Adjacent"/>
+    <disable_collisions link1="A_left_Degree5_link" link2="A_left_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree5_link" link2="A_left_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree5_link" link2="A_right_Degree1_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree5_link" link2="A_right_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree5_link" link2="A_right_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree5_link" link2="A_right_Degree4_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree5_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree5_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree6_link" link2="A_left_Degree7_link" reason="Adjacent"/>
+    <disable_collisions link1="A_left_Degree6_link" link2="A_left_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree6_link" link2="A_left_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree6_link" link2="A_right_Degree1_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree6_link" link2="A_right_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree6_link" link2="A_right_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree6_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree6_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree7_link" link2="A_left_Degree8_link" reason="Adjacent"/>
+    <disable_collisions link1="A_left_Degree7_link" link2="A_left_Degree9_link" reason="Adjacent"/>
+    <disable_collisions link1="A_left_Degree7_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree8_link" link2="A_left_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree8_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_left_Degree9_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="A_right_Degree2_link" reason="Adjacent"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="A_right_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="A_right_Degree4_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="A_right_Degree5_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="A_right_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="A_right_Degree7_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="A_right_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="A_right_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="C_Link" reason="Adjacent"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="H_Degree1_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="H_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree1_link" link2="base_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="A_right_Degree3_link" reason="Adjacent"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="A_right_Degree4_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="A_right_Degree5_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="A_right_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="A_right_Degree7_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="A_right_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="A_right_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="C_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="H_Degree1_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="H_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree2_link" link2="base_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="A_right_Degree4_link" reason="Adjacent"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="A_right_Degree5_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="A_right_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="A_right_Degree7_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="A_right_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="A_right_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="C_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="H_Degree1_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="H_Degree3_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree3_link" link2="base_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree4_link" link2="A_right_Degree5_link" reason="Adjacent"/>
+    <disable_collisions link1="A_right_Degree4_link" link2="A_right_Degree6_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree4_link" link2="A_right_Degree7_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree4_link" link2="A_right_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree4_link" link2="A_right_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree4_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree4_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree4_link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree4_link" link2="H_Degree1_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree4_link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree5_link" link2="A_right_Degree6_link" reason="Adjacent"/>
+    <disable_collisions link1="A_right_Degree5_link" link2="A_right_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree5_link" link2="A_right_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree5_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree5_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree6_link" link2="A_right_Degree7_link" reason="Adjacent"/>
+    <disable_collisions link1="A_right_Degree6_link" link2="A_right_Degree8_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree6_link" link2="A_right_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree6_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree6_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree7_link" link2="A_right_Degree8_link" reason="Adjacent"/>
+    <disable_collisions link1="A_right_Degree7_link" link2="A_right_Degree9_link" reason="Adjacent"/>
+    <disable_collisions link1="A_right_Degree7_link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree7_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree8_link" link2="A_right_Degree9_link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree8_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="A_right_Degree9_link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="C_Link" link2="D_behind_Link" reason="Never"/>
+    <disable_collisions link1="C_Link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="C_Link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="C_Link" link2="H_Degree1_Link" reason="Adjacent"/>
+    <disable_collisions link1="C_Link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="C_Link" link2="H_Degree3_link" reason="Never"/>
+    <disable_collisions link1="C_Link" link2="base_link" reason="Adjacent"/>
+    <disable_collisions link1="D_behind_Link" link2="D_left_Link" reason="Never"/>
+    <disable_collisions link1="D_behind_Link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="D_behind_Link" link2="H_Degree1_Link" reason="Never"/>
+    <disable_collisions link1="D_behind_Link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="D_behind_Link" link2="H_Degree3_link" reason="Never"/>
+    <disable_collisions link1="D_behind_Link" link2="base_link" reason="Adjacent"/>
+    <disable_collisions link1="D_left_Link" link2="D_right_Link" reason="Never"/>
+    <disable_collisions link1="D_left_Link" link2="H_Degree1_Link" reason="Never"/>
+    <disable_collisions link1="D_left_Link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="D_left_Link" link2="H_Degree3_link" reason="Never"/>
+    <disable_collisions link1="D_left_Link" link2="base_link" reason="Adjacent"/>
+    <disable_collisions link1="D_right_Link" link2="H_Degree1_Link" reason="Never"/>
+    <disable_collisions link1="D_right_Link" link2="H_Degree2_link" reason="Never"/>
+    <disable_collisions link1="D_right_Link" link2="H_Degree3_link" reason="Never"/>
+    <disable_collisions link1="D_right_Link" link2="base_link" reason="Adjacent"/>
+    <disable_collisions link1="H_Degree1_Link" link2="H_Degree2_link" reason="Adjacent"/>
+    <disable_collisions link1="H_Degree1_Link" link2="base_link" reason="Default"/>
+    <disable_collisions link1="H_Degree2_link" link2="H_Degree3_link" reason="Adjacent"/>
+</robot>

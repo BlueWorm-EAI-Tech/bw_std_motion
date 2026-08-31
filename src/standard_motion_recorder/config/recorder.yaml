@@ -1,0 +1,11 @@
+motion_recorder:
+  ros__parameters:
+    feedback_topic: joint_states
+    sample_rate: 25.0
+    output_directory: /home/lanchong/standrad_movelt_motion/src/standard_motion_recorder/motions
+    initial_move_velocity: 0.15
+    initial_move_min_duration: 3.0
+    action_wait_timeout: 5.0
+    trim_stationary_start: true
+    stationary_arm_epsilon: 0.002
+    stationary_gripper_epsilon: 0.02

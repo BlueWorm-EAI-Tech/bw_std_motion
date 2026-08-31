@@ -1,0 +1,22 @@
+trajectory_bridge:
+  ros__parameters:
+    publish_rate: 100.0
+    feedback_timeout: 0.5
+    goal_tolerance: 0.035
+    goal_time_tolerance: 2.0
+    max_joint_velocity: 0.35
+    auto_enable: true
+    control_flag: 25
+    home_on_start: true
+    home_grippers_open: true
+    home_velocity: 0.15
+    home_min_duration: 3.0
+    home_timeout: 8.0
+    home_tolerance: 0.035
+    tracking_error_fault: 0.6
+    tracking_error_fault_dwell: 0.3
+    gripper_travel: 0.04965
+    gripper_tolerance: 0.002
+    gripper_timeout: 3.0
+    home_positions: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]

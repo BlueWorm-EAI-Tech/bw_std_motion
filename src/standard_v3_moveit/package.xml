@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>standard_v3_moveit</name>
+  <version>0.1.0</version>
+  <description>Real hardware trajectory bridge between MoveIt and the Standard V3 serial driver.</description>
+  <maintainer email="dev@example.com">developer</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>ament_cmake_python</build_depend>
+  <exec_depend>bw_serial</exec_depend>
+  <exec_depend>control_msgs</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>

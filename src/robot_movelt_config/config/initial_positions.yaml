@@ -1,0 +1,21 @@
+# Default initial positions for standard's ros2_control fake system
+
+initial_positions:
+  A_left_Degree1_joint: 0
+  A_left_Degree2_joint: 0
+  A_left_Degree3_joint: 0
+  A_left_Degree4_joint: 0
+  A_left_Degree5_joint: 0
+  A_left_Degree6_joint: 0
+  A_left_Degree7_joint: 0
+  A_left_Degree8_joint: 0
+  A_left_Degree9_joint: 0
+  A_right_Degree1_joint: 0
+  A_right_Degree2_joint: 0
+  A_right_Degree3_joint: 0
+  A_right_Degree4_joint: 0
+  A_right_Degree5_joint: 0
+  A_right_Degree6_joint: 0
+  A_right_Degree7_joint: 0
+  A_right_Degree8_joint: 0
+  A_right_Degree9_joint: 0
